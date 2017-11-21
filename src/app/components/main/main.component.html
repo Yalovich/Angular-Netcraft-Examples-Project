@@ -1,0 +1,25 @@
+<h1>{{ getTitle("Israel Israeli") }}</h1>
+
+<div>
+    <ul>
+        <li *ngFor="let band of bands; let bandIndex = index;" [attr.data-index]="bandIndex" [ngClass]="{tour: highlightBand(band), longName: (band.name.length > 10)}" (mouseenter)="onMouseEnter($event, band)" (mouseleave)="onMouseLeave($event, band)">
+            <span [ngStyle]="{color: getTourColor(band)}">{{ band.name }}</span>
+
+            <i [hidden]="!band.onTour">✈️</i>
+
+            <button (click)="activateToggle(band)">
+                {{ (band.onTour ? "Deactivate Tour" : "Activate Tour") }}
+            </button>
+        </li>
+    </ul>
+    <footer #myFooter>
+        Total Tasks: {{ onTourBands.length }} of  {{ bands.length }}
+        <div>
+            <input type="text" placeholder="Band Name" #bandname (focus)="onFocus($event)"/>
+
+            <button (click)="addNewBand($event, bandname)">
+                Add {{ bandname.value }}
+            </button>
+        </div>
+    </footer>
+</div>
