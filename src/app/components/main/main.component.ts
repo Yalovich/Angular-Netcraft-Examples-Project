@@ -9,9 +9,12 @@ import { BandModel } from "../../models/band.model";
 export class MainComponent
 {
     title: string = "Welcome.";
-    bands: BandModel[] = [];
+    bandsMain: BandModel[] = [];
 
     onTourBands: BandModel[] = [];
+
+    currentDate: Date = new Date();
+    displayDate: string;
 
     @ViewChild("bandname")
     bandName: ElementRef;
@@ -22,21 +25,17 @@ export class MainComponent
     constructor()
     {
         /* data from server */
-        this.bands.push(new BandModel("Anderson Paak.", true, 100));
-        this.bands.push(new BandModel("Bob Marley", false, 200));
-        this.bands.push(new BandModel("Kendrick Lamar", true, 300));
+        this.bandsMain.push(new BandModel("Pink Floyd", true, 100));
+        this.bandsMain.push(new BandModel("The Doors", false, 200));
+        this.bandsMain.push(new BandModel("Rami Fortis", true, 300));
 
-        this.bands.forEach((band: BandModel) => {
+        this.bandsMain.forEach((band: BandModel) => {
 
             if(band.onTour) this.onTourBands.push(band);
 
         });
 
-        setTimeout(() => {
-
-            console.log("this is the footer: ", this.componentFooter)
-
-        }, 2500);
+        this.displayDate = this.currentDate.getFullYear().toString();
     }
 
     /**

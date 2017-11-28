@@ -1,0 +1,7 @@
+<span>{{ band.name }}</span>
+
+<div>
+    {{ band.ticketPrice | addTax:taxPercent }}
+</div>
+
+<button (click)="activateTour($event)">Activate Tour</button>
