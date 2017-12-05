@@ -1,5 +1,6 @@
 import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {BandModel} from "../../../models/band.model";
+import {UiService} from "../../../services/ui.service";
 
 @Component({
     selector: 'band-list-item',
@@ -20,6 +21,23 @@ export class BandlistItemComponent
     @Output()
     onDelete: EventEmitter<BandModel> = new EventEmitter<BandModel>();
 
+    constructor(private uiService: UiService) {}
+
+    ngOnInit()
+    {
+        console.log("Init: ", this.band);
+    }
+
+    ngOnChanges()
+    {
+
+    }
+
+    ngOnDestroy()
+    {
+        console.log("Destroy: ", this.band);
+    }
+
     /**
      *
      * @param event
@@ -28,5 +46,14 @@ export class BandlistItemComponent
     {
         console.log("Activate: ", this.band)
         this.onActivateTour.emit(this.band);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    onBandSelect(event: MouseEvent)
+    {
+        this.uiService.selectBand(this.band);
     }
 }

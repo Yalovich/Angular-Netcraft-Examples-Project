@@ -1,8 +1,7 @@
 
-
-
 <search-input [searchTerm]="predefinedSearchTerm" (onSearch)="searchBands($event)"></search-input>
 
 <band-list [bands]="bandsSidebar"></band-list>
 
 <button (click)="addBand($event)">Add Band</button>
+<button (click)="removeLastBand($event)">Remove Band</button>

@@ -4,8 +4,55 @@
     padding: 10px 5px;
     background-color: #fff;
     margin-bottom: 10px;
+    border-radius: 4px;
 
-    box-shadow: 1px 1px 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+    transition: all .2s ease;
+    overflow: hidden;
+}
 
+:host:hover
+{
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0);
+}
 
+.image-container
+{
+    height: 20vh;
+    background-color: transparent;
+    position: relative;
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: -30px;
+}
+.image-container figure
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: top center;
+}
+
+.image-container figure::after
+{
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0) 100%);
+}
+
+.container
+{
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 0;
 }

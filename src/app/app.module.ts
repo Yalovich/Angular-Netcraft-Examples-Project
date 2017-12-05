@@ -10,6 +10,9 @@ import {BandlistComponent} from "./components/bandList/bandlist.component";
 import {BandlistItemComponent} from "./components/bandList/bandListItem/bandListItem.component";
 import {SearchInputComponent} from "./components/searchInput/searchInput.component";
 import {TaxPipe} from "./pipes/tax.pipe";
+import {UiService} from "./services/ui.service";
+import {DataService} from "./services/data.services";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,9 +29,10 @@ import {TaxPipe} from "./pipes/tax.pipe";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UiService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

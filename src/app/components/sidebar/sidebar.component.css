@@ -1,7 +1,10 @@
 :host
 {
-    min-width: 250px;
-    max-width: 250px;
-    width: 250px;
-    background-color: lightblue;
+    min-width: 350px;
+    max-width: 450px;
+    width: 20vw;
+    background-color: #efefef;
+    box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, .4);
+    padding: 10px;
+    overflow: scroll;
 }

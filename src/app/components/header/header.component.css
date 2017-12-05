@@ -1,7 +1,41 @@
 :host
 {
-    display: block;
-    background-color: deepskyblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    box-shadow: 0 1px 5px 1px rgba(0, 0, 0, .4);
     color: #fff;
     height: 60px;
+}
+
+:host>div
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+figure
+{
+    margin: 0;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 70%;
+    padding: 0;
+
+}
+figure img
+{
+    height: 100%;
+}
+:host>div>span
+{
+    display: block;
+    color: #fff;
+}
+
+
+.user-profile
+{
+    border: 1px solid #fff;
 }

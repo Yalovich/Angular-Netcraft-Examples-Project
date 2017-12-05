@@ -2,6 +2,7 @@ export class BandModel
 {
     id: number = 0;
     ticketPrice: number = 0;
+    picture: string = null;
 
     constructor(public name: string, public onTour?: boolean, id?: number)
     {
@@ -9,6 +10,16 @@ export class BandModel
         {
             this.id = id;
         }
+    }
+
+    /**
+     *
+     * @param url
+     */
+    addPicture(url: string)
+    {
+        this.picture = url;
+        return this;
     }
 
     /**

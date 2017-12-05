@@ -1,3 +1,12 @@
-<h1>{{ getTitle("Israel Israeli") }}</h1>
+<div *ngIf="selectedBand">
+    <h1>{{selectedBand.name}}</h1>
+    <figure>
+        <img src="{{selectedBand.picture}}" />
+    </figure>
+</div>
+
+<div>
+    <button (click)="removeLastBand($event)">REMOVE LAST BAND</button>
+</div>
 
 

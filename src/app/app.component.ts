@@ -7,5 +7,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
-  title = 'app';
+  appComponentDummyValue: string;
+  displayMain = true;
+
+  constructor()
+  {
+    this.appComponentDummyValue = "hi";
+  }
+
+  ngOnInit()
+  {
+    setTimeout(() => {
+
+      this.appComponentDummyValue = "bye";
+
+    }, 3000);
+
+    setTimeout(() => {
+
+      // this.displayMain = false;
+
+    }, 5000);
+  }
 }

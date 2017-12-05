@@ -1,5 +1,7 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import { BandModel } from "../../models/band.model";
+import {Component, ViewChild, ElementRef, SimpleChanges, Input} from '@angular/core';
+import {BandModel} from "../../models/band.model";
+import {UiService} from "../../services/ui.service";
+import {DataService} from "../../services/data.services";
 
 @Component({
     selector: 'main-cotainer',
@@ -10,11 +12,15 @@ export class MainComponent
 {
     title: string = "Welcome.";
     bandsMain: BandModel[] = [];
+    selectedBand: BandModel;
 
     onTourBands: BandModel[] = [];
 
     currentDate: Date = new Date();
     displayDate: string;
+
+    @Input()
+    dummy: string;
 
     @ViewChild("bandname")
     bandName: ElementRef;
@@ -22,20 +28,38 @@ export class MainComponent
     @ViewChild("myFooter")
     componentFooter: ElementRef;
 
-    constructor()
+    constructor(private uiService: UiService, private dataService: DataService) {}
+
+    ngOnInit()
     {
-        /* data from server */
-        this.bandsMain.push(new BandModel("Pink Floyd", true, 100));
-        this.bandsMain.push(new BandModel("The Doors", false, 200));
-        this.bandsMain.push(new BandModel("Rami Fortis", true, 300));
+        console.info("ngOnInit");
 
-        this.bandsMain.forEach((band: BandModel) => {
+        let reference = this.uiService.onSelectedBandEvent.subscribe(this.onSelectBand.bind(this));
+    }
 
-            if(band.onTour) this.onTourBands.push(band);
+    removeLastBand(event: MouseEvent)
+    {
+        this.dataService.removeLastBand();
+    }
 
-        });
+    /**
+     * dispatched when someone choose band from BandListItem
+     * @param band
+     */
+    onSelectBand(band: BandModel)
+    {
+        console.log("FROM MAIN - AUTO: ", band);
+        this.selectedBand = band;
+    }
 
-        this.displayDate = this.currentDate.getFullYear().toString();
+    /**
+     * query ui service for selected band
+     * @param event
+     */
+    getSelectedBand(event: MouseEvent)
+    {
+        this.selectedBand = this.uiService.getSelectedBand();
+        console.log("FROM MAIN: ", this.selectedBand);
     }
 
     /**

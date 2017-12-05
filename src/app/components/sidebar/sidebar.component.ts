@@ -1,30 +1,53 @@
 import { Component } from '@angular/core';
 import {BandModel} from "../../models/band.model";
+import {StorageService} from "../../services/storage.service";
+import {DataService} from "../../services/data.services";
 
 @Component({
     selector: 'sidebar',
     templateUrl: "./sidebar.component.html",
-    styleUrls: ["./sidebar.component.css"]
+    styleUrls: ["./sidebar.component.css"],
+    providers: [StorageService]
 })
 export class SidebarComponent
 {
     predefinedSearchTerm: string;
     bandsSidebar: BandModel[] = [];
 
-    constructor()
+    constructor(private storageService: StorageService, private dataService: DataService) {}
+
+    ngOnInit()
     {
-        /* data from server */
-        this.bandsSidebar.push(new BandModel("Anderson Paak.", true, 100));
+        this.bandsSidebar = this.dataService.bands;
+        this.dataService.onBandsUpdate.subscribe(this.onBandUpdate.bind(this));
+    }
 
-        let bob: BandModel = new BandModel("Bob Marley", false, 200);
-        bob.addTicketPrice(150);
+    /**
+     *
+     * @param bands
+     */
+    onBandUpdate(bands: BandModel[])
+    {
+        this.bandsSidebar = bands;
+    }
 
-        this.bandsSidebar.push(bob);
+    /**
+     * remove last band from service
+     */
+    removeLastBand()
+    {
+        this.dataService.removeLastBand();
+    }
 
-        let kendrick: BandModel = new BandModel("Kendrick Lamar", true, 300);
-        kendrick.addTicketPrice(200);
+    /**
+     *
+     * @param event
+     */
+    saveList(event: MouseEvent)
+    {
+        console.log("Bands: ", this.bandsSidebar);
 
-        this.bandsSidebar.push(kendrick);
+        this.storageService.set("bands", this.bandsSidebar);
     }
 
     /**

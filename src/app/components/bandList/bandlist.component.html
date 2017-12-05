@@ -1,6 +1,7 @@
 
-<band-list-item
-        *ngFor="let band of bands; let bandIndex = index;"
-        [band]="band"
-        (onActivateTour)="bandListOnActivateTour($event)"
-></band-list-item>
+<div *ngFor="let band of bands; let bandIndex = index;">
+    <band-list-item
+            [band]="band"
+            (onActivateTour)="bandListOnActivateTour($event)"
+    ></band-list-item>
+</div>
