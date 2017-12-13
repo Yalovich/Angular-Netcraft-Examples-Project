@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,23 +11,18 @@ export class AppComponent
   appComponentDummyValue: string;
   displayMain = true;
 
-  constructor()
+  constructor(private activatedRoute: ActivatedRoute)
   {
     this.appComponentDummyValue = "hi";
   }
 
   ngOnInit()
   {
-    setTimeout(() => {
+    /* get profile name */
+    this.activatedRoute.paramMap.subscribe((paramsMap: ParamMap) => {
 
-      this.appComponentDummyValue = "bye";
+      console.log("ParamMap: ", paramsMap);
 
-    }, 3000);
-
-    setTimeout(() => {
-
-      // this.displayMain = false;
-
-    }, 5000);
+    })
   }
 }

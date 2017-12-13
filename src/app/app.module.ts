@@ -13,6 +13,18 @@ import {TaxPipe} from "./pipes/tax.pipe";
 import {UiService} from "./services/ui.service";
 import {DataService} from "./services/data.services";
 import {HttpClientModule} from "@angular/common/http";
+import {ConsoleDirective} from "./directives/console.directive";
+import {RouterModule, Routes} from "@angular/router";
+import {ProfileComponent} from "./components/profile/profile.component";
+
+const appRoutes: Routes = [
+  { path: 'user-profile/:name/:id', component: ProfileComponent },
+  { path: 'user-profile', component: ProfileComponent },
+  { path: 'main', component: MainComponent },
+  { path: '', component: MainComponent },
+  { path: '**', component: MainComponent }
+];
+
 
 @NgModule({
   declarations: [
@@ -20,17 +32,22 @@ import {HttpClientModule} from "@angular/common/http";
     HeaderComponent,
     SidebarComponent,
     MainComponent,
+    ProfileComponent,
     BandlistComponent,
     BandlistItemComponent,
     SearchInputComponent,
 
     /* */
-    TaxPipe
+    TaxPipe,
+
+    /* directives */
+    ConsoleDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [UiService, DataService],
   bootstrap: [AppComponent]

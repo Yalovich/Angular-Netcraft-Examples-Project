@@ -1,5 +1,8 @@
+
+
+
 <div class="image-container">
-    <figure [ngStyle]="{backgroundImage: 'url('+ band.picture +')'}">
+    <figure [ngStyle]="{backgroundImage: 'url('+ band.picture +')'}" [console]="band.picture">
 
     </figure>
 </div>
@@ -12,4 +15,8 @@
 
 <footer>
     <button (click)="onBandSelect($event)">SELECT</button>
+    <button (click)="onShowProfile($event)">SHOW PROFILE</button>
 </footer>
+
+
+

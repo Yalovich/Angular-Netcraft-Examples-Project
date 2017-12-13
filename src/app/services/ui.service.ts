@@ -1,11 +1,12 @@
 import {Injectable, EventEmitter} from "@angular/core";
 import {BandModel} from "../models/band.model";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class UiService
 {
     selectedBand: BandModel;
-    onSelectedBandEvent: EventEmitter<BandModel> = new EventEmitter<BandModel>();
+    onSelectedBandEvent: Subject<BandModel> = new Subject<BandModel>();
 
     /**
      * select band
@@ -16,7 +17,7 @@ export class UiService
         console.log("FROM UI SERVICE: ", band);
         this.selectedBand = band;
 
-        this.onSelectedBandEvent.emit(this.selectedBand);
+        this.onSelectedBandEvent.next(this.selectedBand);
 
         return this;
     }

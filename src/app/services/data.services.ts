@@ -11,12 +11,16 @@ export class DataService
 
     constructor(private http: HttpClient)
     {
-        console.log("HTTP:", http);
-
-
-        http.get("http://localhost:3000/bands").subscribe(this.onBandsDataReady.bind(this), this.bandFallback.bind(this));
+        // console.log("HTTP:", http);
+        http.get("http://localhost:3000/bands").subscribe(
+            this.onBandsDataReady.bind(this),
+            this.bandFallback.bind(this)
+        );
     }
 
+    /**
+     *
+     */
     bandFallback()
     {
         /* data from server */

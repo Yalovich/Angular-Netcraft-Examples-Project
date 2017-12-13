@@ -37,5 +37,18 @@ figure img
 
 .user-profile
 {
-    border: 1px solid #fff;
+    color: #fff;
+}
+.user-profile nav
+{
+
+}
+.user-profile nav a
+{
+    color: inherit;
+}
+
+.active-class
+{
+    color: red;
 }

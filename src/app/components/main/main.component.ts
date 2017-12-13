@@ -1,4 +1,7 @@
-import {Component, ViewChild, ElementRef, SimpleChanges, Input} from '@angular/core';
+import {
+    Component, ViewChild, ElementRef, SimpleChanges, Input, ChangeDetectionStrategy,
+    ChangeDetectorRef
+} from '@angular/core';
 import {BandModel} from "../../models/band.model";
 import {UiService} from "../../services/ui.service";
 import {DataService} from "../../services/data.services";
@@ -6,7 +9,8 @@ import {DataService} from "../../services/data.services";
 @Component({
     selector: 'main-cotainer',
     templateUrl: "./main.component.html",
-    styleUrls: ["./main.component.css"]
+    styleUrls: ["./main.component.css"],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent
 {
@@ -28,12 +32,10 @@ export class MainComponent
     @ViewChild("myFooter")
     componentFooter: ElementRef;
 
-    constructor(private uiService: UiService, private dataService: DataService) {}
+    constructor(private uiService: UiService, private dataService: DataService, private changeDetectionRef: ChangeDetectorRef) {}
 
     ngOnInit()
     {
-        console.info("ngOnInit");
-
         let reference = this.uiService.onSelectedBandEvent.subscribe(this.onSelectBand.bind(this));
     }
 
@@ -48,8 +50,12 @@ export class MainComponent
      */
     onSelectBand(band: BandModel)
     {
-        console.log("FROM MAIN - AUTO: ", band);
+        console.warn("HELLO FROM onSelectBand")
         this.selectedBand = band;
+
+        setTimeout(() => {
+            this.changeDetectionRef.markForCheck();
+        }, 2500);
     }
 
     /**

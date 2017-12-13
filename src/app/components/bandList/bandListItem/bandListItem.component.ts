@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter, Input} from '@angular/core';
 import {BandModel} from "../../../models/band.model";
 import {UiService} from "../../../services/ui.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'band-list-item',
@@ -21,11 +22,11 @@ export class BandlistItemComponent
     @Output()
     onDelete: EventEmitter<BandModel> = new EventEmitter<BandModel>();
 
-    constructor(private uiService: UiService) {}
+    constructor(private uiService: UiService, private router: Router) {}
 
     ngOnInit()
     {
-        console.log("Init: ", this.band);
+     //   console.log("Init: ", this.band);
     }
 
     ngOnChanges()
@@ -35,7 +36,7 @@ export class BandlistItemComponent
 
     ngOnDestroy()
     {
-        console.log("Destroy: ", this.band);
+      //  console.log("Destroy: ", this.band);
     }
 
     /**
@@ -54,6 +55,17 @@ export class BandlistItemComponent
      */
     onBandSelect(event: MouseEvent)
     {
+        this.router.navigate(["/main"]);
         this.uiService.selectBand(this.band);
+    }
+
+    /**
+     *
+     * @param event
+     */
+    onShowProfile(event: MouseEvent)
+    {
+        this.router.navigate(["/user-profile", this.band.name, this.band.id]);
+        /*                     /user-profile / george-clinton / 123127       */
     }
 }
